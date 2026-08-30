@@ -1,0 +1,23 @@
+NAME := sed
+CC := c++
+CFLAGS := -Wall -Werror -Wextra -std=c++98 $(INC)
+
+SRC := main.cpp
+OBJ := $(SRC:.cpp=.o)
+
+all: $(NAME)
+	@echo "compilation completed."
+
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) -o $@
+
+%.o: %.cpp $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	@rm -f $(OBJ)
+
+fclean: clean
+	@rm -f $(NAME)
+
+re: fclean all
